@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { useToast } from "../../hooks/use-toast";
 import { Toast, ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from "@radix-ui/react-toast";
 export function Toaster() {

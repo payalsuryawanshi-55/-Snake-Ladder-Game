@@ -2,7 +2,8 @@ import React from 'react';
 import GameCell from './GameCell';
 import RealisticSnake from './RealisticSnake';
 import RealisticLadder from './RealisticLadder';
-import { getCellNumber, Player, SNAKES, LADDERS } from '../lib/gameData';
+import { getCellNumber, SNAKES, LADDERS } from '../lib/gameData';
+import type { Player } from '../lib/gameData';
 
 interface GameBoardProps {
   players: Player[];

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Player, PLAYER_COLORS } from '../lib/gameData';
+import { PLAYER_COLORS } from '../lib/gameData';
+import type { Player } from '../lib/gameData';
 import { Crown } from 'lucide-react';
 
 interface PlayerInfoProps {

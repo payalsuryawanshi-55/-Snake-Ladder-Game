@@ -6,7 +6,7 @@ import WinnerModal from '../components/WinnerModal';
 import Leaderboard from '../components/Leaderboard';
 import { useGameState } from '../hooks/useGamesState';
 import { playButtonSound } from '../lib/sounds';
-import { Home, RotateCcw, Volume2, VolumeX, Menu, X } from 'lucide-react';
+import { Home, Volume2, VolumeX, Menu, X } from 'lucide-react';
 
 const Game: React.FC = () => {
   const { gameId } = useParams<{ gameId: string }>();
@@ -17,11 +17,9 @@ const Game: React.FC = () => {
     isRolling, 
     isMoving, 
     message, 
-    diceHistory,
     loadGame, 
     rollDice, 
     resetGame,
-    forceResetSession 
   } = useGameState();
   
   const [isLoading, setIsLoading] = useState(true);
@@ -56,9 +54,7 @@ const Game: React.FC = () => {
     setSoundEnabled(!soundEnabled);
   };
 
-  const handleResetSession = () => {
-    forceResetSession();
-  };
+ 
 
   if (isLoading) {
     return (
@@ -198,7 +194,6 @@ const Game: React.FC = () => {
               isRolling={isRolling}
               isMoving={isMoving}
               message={message}
-              diceHistory={diceHistory}
               onRollDice={rollDice}
               onGoHome={handleGoHome}
               onResetGame={handlePlayAgain}
@@ -259,7 +254,6 @@ const Game: React.FC = () => {
             <Leaderboard 
               compact={true} 
               currentSessionOnly={true}
-              onReset={handleResetSession}
             />
           </div>
         </div>
@@ -318,7 +312,6 @@ const Game: React.FC = () => {
               
               <button
                 onClick={() => {
-                  forceResetSession();
                   setShowMobileMenu(false);
                 }}
                 className="w-full p-3 text-left rounded-lg hover:bg-gray-700 transition-colors text-white"

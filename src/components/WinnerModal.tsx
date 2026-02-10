@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { Player, PLAYER_COLORS } from '../lib/gameData';
+import { PLAYER_COLORS } from '../lib/gameData';
+import type { Player } from '../lib/gameData';
 import { playWinSound } from '../lib/sounds';
 import { Trophy, Home, RotateCcw, Sparkles, Star } from 'lucide-react';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { SNAKES, LADDERS } from '../lib/gameData';
 import PlayerToken from './PlayerToken';
-import { Player } from '../lib/gameData';
+import type { Player } from '../lib/gameData';
 interface GameCellProps {
   number: number;
   players: Player[];
