@@ -1,0 +1,987 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Premium Snake & Ladder Game Design System - Fully Responsive */
+
+@layer base {
+  :root {
+    --background: 220 15% 95%;
+    --foreground: 220 20% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 15%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 220 20% 10%;
+
+    --secondary: 220 15% 90%;
+    --secondary-foreground: 220 20% 25%;
+
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 160 84% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 85%;
+    --input: 220 15% 85%;
+    --ring: 210 100% 50%;
+
+    /* Extended color palette for neons */
+    --neon-cyan: 180 100% 50%;
+    --neon-emerald: 150 100% 50%;
+    --neon-blue: 210 100% 50%;
+    --neon-red: 0 100% 65%;
+    
+    /* Extended radius system */
+    --radius-xs: 0.25rem;
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-2xl: 2rem;
+
+    /* Spacing for mobile */
+    --mobile-padding: 1rem;
+    --mobile-gap: 0.75rem;
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 95%;
+
+    --card: 222 47% 10%;
+    --card-foreground: 210 40% 95%;
+
+    --popover: 222 47% 10%;
+    --popover-foreground: 210 40% 95%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 222 30% 15%;
+    --secondary-foreground: 210 30% 90%;
+
+    --muted: 222 30% 12%;
+    --muted-foreground: 215 15% 55%;
+
+    --accent: 160 84% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 18%;
+    --ring: 210 100% 50%;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Better scrollbars */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: var(--radius-sm);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.4);
+    border-radius: var(--radius-sm);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.6);
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    html {
+      font-size: 14px;
+    }
+    
+    body {
+      overflow-x: hidden;
+    }
+  }
+
+  @media (max-width: 480px) {
+    html {
+      font-size: 13px;
+    }
+  }
+}
+
+@layer components {
+  /* Responsive Containers */
+  .container-responsive {
+    @apply w-full px-4 mx-auto;
+    
+    @screen sm {
+      @apply max-w-screen-sm px-6;
+    }
+    
+    @screen md {
+      @apply max-w-screen-md;
+    }
+    
+    @screen lg {
+      @apply max-w-screen-lg;
+    }
+    
+    @screen xl {
+      @apply max-w-screen-xl;
+    }
+    
+    @screen 2xl {
+      @apply max-w-screen-2xl;
+    }
+  }
+
+  /* Glass Cards - Responsive */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg sm:rounded-xl lg:rounded-2xl shadow-lg sm:shadow-xl;
+  }
+
+  .glass-card-strong {
+    @apply bg-white/10 backdrop-blur-2xl border border-white/20 rounded-xl lg:rounded-3xl shadow-xl;
+  }
+
+  .glass-card-mobile {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 rounded-lg shadow-lg p-4;
+  }
+
+  /* Responsive Game Board */
+  .game-board-responsive {
+    @apply grid grid-cols-10 grid-rows-10 w-full h-full gap-0.5 sm:gap-1 p-0.5 sm:p-2;
+  }
+
+  .game-cell-responsive {
+    @apply aspect-square text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs;
+  }
+
+  /* Responsive Buttons */
+  .btn-responsive {
+    @apply px-3 py-2 sm:px-4 sm:py-2.5 md:px-5 md:py-3 text-sm sm:text-base;
+  }
+
+  .btn-primary-responsive {
+    @apply btn-responsive bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg sm:rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary-responsive {
+    @apply btn-responsive bg-gray-800 hover:bg-gray-700 text-white font-medium rounded-lg transition-all;
+  }
+
+  /* Responsive Text */
+  .text-responsive-h1 {
+    @apply text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold;
+  }
+
+  .text-responsive-h2 {
+    @apply text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold;
+  }
+
+  .text-responsive-h3 {
+    @apply text-lg xs:text-xl sm:text-2xl md:text-3xl font-semibold;
+  }
+
+  .text-responsive-body {
+    @apply text-sm xs:text-base sm:text-lg;
+  }
+
+  .text-responsive-small {
+    @apply text-xs xs:text-sm;
+  }
+
+  /* Responsive Grids */
+  .grid-responsive {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6;
+  }
+
+  .grid-responsive-2 {
+    @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3 md:gap-4;
+  }
+
+  /* Responsive Flex */
+  .flex-responsive {
+    @apply flex flex-col sm:flex-row;
+  }
+
+  .flex-responsive-reverse {
+    @apply flex flex-col-reverse sm:flex-row;
+  }
+
+  /* Responsive Spacing */
+  .p-responsive {
+    @apply p-3 sm:p-4 md:p-6;
+  }
+
+  .px-responsive {
+    @apply px-3 sm:px-4 md:px-6;
+  }
+
+  .py-responsive {
+    @apply py-3 sm:py-4 md:py-6;
+  }
+
+  .gap-responsive {
+    @apply gap-3 sm:gap-4 md:gap-6;
+  }
+
+  /* Mobile Navigation */
+  .mobile-nav {
+    @apply fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur-lg border-t border-gray-700 z-40;
+  }
+
+  .mobile-nav-item {
+    @apply flex flex-col items-center justify-center p-3 text-xs text-gray-400 hover:text-white transition-colors;
+  }
+
+  .mobile-nav-item-active {
+    @apply text-blue-400;
+  }
+
+  /* Sidebar Responsive */
+  .sidebar-desktop {
+    @apply hidden lg:flex lg:w-[30%] xl:w-[28%] 2xl:w-[25%] flex-col border-l border-gray-700 bg-gray-900/90;
+  }
+
+  .sidebar-mobile {
+    @apply fixed inset-0 z-50 bg-gray-900/95 backdrop-blur-sm lg:hidden;
+  }
+
+  /* Game Board Container Responsive */
+  .board-container {
+    @apply relative w-full h-full flex items-center justify-center p-1 sm:p-2 md:p-3 lg:p-4;
+  }
+
+  .board-inner {
+    @apply relative w-full max-w-[min(100%,calc(100vh-300px))] sm:max-w-[min(100%,calc(100vh-250px))] lg:max-w-[min(100%,calc(100vh-200px))] aspect-square;
+  }
+
+  /* Player Tokens Responsive */
+  .player-token-responsive {
+    @apply w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10;
+  }
+
+  /* Dice Responsive */
+  .dice-responsive {
+    @apply w-16 h-16 xs:w-20 xs:h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32;
+  }
+
+  /* Modal Responsive */
+  .modal-responsive {
+    @apply fixed inset-0 z-50 flex items-center justify-center p-3 xs:p-4 sm:p-6 md:p-8;
+  }
+
+  .modal-content-responsive {
+    @apply w-full max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl bg-gray-800 rounded-xl sm:rounded-2xl border border-gray-700 p-4 xs:p-5 sm:p-6 md:p-8;
+  }
+
+  /* Tab Navigation */
+  .tabs-responsive {
+    @apply flex border-b border-gray-700;
+  }
+
+  .tab-responsive {
+    @apply flex-1 py-3 text-sm font-medium transition-colors text-gray-400 hover:text-gray-300 border-b-2 border-transparent;
+  }
+
+  .tab-responsive-active {
+    @apply text-blue-400 border-blue-400;
+  }
+
+  /* Stats Cards Responsive */
+  .stat-card-responsive {
+    @apply bg-gray-800/50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-gray-700/30;
+  }
+
+  /* Inputs Responsive */
+  .input-responsive {
+    @apply w-full px-3 py-2 sm:px-4 sm:py-2.5 bg-gray-800/50 rounded-lg border border-gray-700/50 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all;
+  }
+
+  /* Loading Skeleton */
+  .skeleton-responsive {
+    @apply animate-pulse bg-gray-700/50 rounded;
+  }
+
+  /* Toast/Notification */
+  .toast-responsive {
+    @apply fixed bottom-4 left-1/2 transform -translate-x-1/2 w-[90%] max-w-sm sm:max-w-md bg-gray-800 border border-gray-700 rounded-xl p-4 shadow-xl z-50;
+  }
+
+  /* Progress Bars */
+  .progress-bar-responsive {
+    @apply w-full h-1.5 sm:h-2 bg-gray-700/50 rounded-full overflow-hidden;
+  }
+
+  .progress-fill-responsive {
+    @apply h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-500;
+  }
+
+  /* Tooltips */
+  .tooltip-responsive {
+    @apply absolute z-50 px-2 py-1.5 text-xs bg-gray-900 border border-gray-700 rounded-lg shadow-lg text-white whitespace-nowrap;
+  }
+
+  /* Badges */
+  .badge-responsive {
+    @apply px-2 py-0.5 sm:px-2.5 sm:py-1 text-xs rounded-lg;
+  }
+
+  /* Avatar */
+  .avatar-responsive {
+    @apply w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center;
+  }
+
+  /* Game Controls */
+  .game-controls-mobile {
+    @apply fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur-lg border-t border-gray-700 p-3 z-30;
+  }
+
+  .game-controls-desktop {
+    @apply absolute top-4 right-4 z-20 flex gap-2;
+  }
+
+  /* Leaderboard */
+  .leaderboard-responsive {
+    @apply w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto;
+  }
+
+  /* Player List */
+  .player-list-responsive {
+    @apply space-y-2 max-h-[200px] sm:max-h-[250px] md:max-h-[300px] overflow-y-auto pr-2;
+  }
+
+  /* Dice History */
+  .dice-history-responsive {
+    @apply flex gap-1 justify-center;
+  }
+
+  .dice-history-item-responsive {
+    @apply w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 rounded flex items-center justify-center text-xs xs:text-sm font-bold;
+  }
+
+  /* Status Message */
+  .status-message-responsive {
+    @apply rounded-lg sm:rounded-xl p-3 text-sm sm:text-base text-center;
+  }
+
+  /* Game Info Cards */
+  .game-info-card {
+    @apply bg-gray-800/50 rounded-lg sm:rounded-xl p-3 border border-gray-700/30;
+  }
+
+  /* Score Board */
+  .score-board-responsive {
+    @apply grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2 sm:gap-3;
+  }
+
+  /* Timer */
+  .timer-responsive {
+    @apply text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-mono font-bold;
+  }
+
+  /* Winner Banner */
+  .winner-banner-responsive {
+    @apply text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-center;
+  }
+
+  /* Game Layout */
+  .game-layout-mobile {
+    @apply flex flex-col h-screen;
+  }
+
+  .game-layout-desktop {
+    @apply flex flex-row h-screen;
+  }
+
+  /* Screen-specific utilities */
+  .mobile-only {
+    @apply block sm:hidden;
+  }
+
+  .tablet-only {
+    @apply hidden sm:block md:hidden;
+  }
+
+  .desktop-only {
+    @apply hidden lg:block;
+  }
+
+  .not-mobile {
+    @apply hidden xs:block;
+  }
+
+  .not-desktop {
+    @apply block lg:hidden;
+  }
+}
+
+@layer utilities {
+  /* Text gradients */
+  .text-gradient-responsive {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400;
+  }
+
+  /* Shadows Responsive */
+  .shadow-responsive {
+    @apply shadow-lg sm:shadow-xl md:shadow-2xl;
+  }
+
+  .shadow-neon-responsive {
+    @apply shadow-[0_0_15px_rgba(59,130,246,0.3)] sm:shadow-[0_0_25px_rgba(59,130,246,0.4)] md:shadow-[0_0_35px_rgba(59,130,246,0.5)];
+  }
+
+  /* Animations Responsive */
+  .animate-responsive-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-responsive-bounce {
+    animation: bounce 1s infinite;
+  }
+
+  .animate-responsive-spin {
+    animation: spin 1s linear infinite;
+  }
+
+  /* Transitions */
+  .transition-responsive {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  /* Aspect Ratios */
+  .aspect-square-responsive {
+    @apply aspect-square;
+  }
+
+  .aspect-video-responsive {
+    @apply aspect-video;
+  }
+
+  /* Overflow */
+  .overflow-touch {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Tap highlight */
+  .tap-highlight-none {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Safe Area Insets for Notch Phones */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .pl-safe {
+    padding-left: env(safe-area-inset-left);
+  }
+
+  .pr-safe {
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Responsive positioning */
+  .sticky-responsive {
+    @apply sticky top-0 z-20;
+  }
+
+  .fixed-responsive {
+    @apply fixed z-30;
+  }
+
+  /* Responsive visibility */
+  .visible-mobile {
+    @apply visible sm:invisible;
+  }
+
+  .visible-desktop {
+    @apply invisible lg:visible;
+  }
+
+  /* Responsive opacity */
+  .opacity-responsive {
+    @apply opacity-90 sm:opacity-95 md:opacity-100;
+  }
+
+  /* Responsive backdrop blur */
+  .backdrop-blur-responsive {
+    @apply backdrop-blur-sm sm:backdrop-blur-md lg:backdrop-blur-lg;
+  }
+
+  /* Responsive border width */
+  .border-responsive {
+    @apply border sm:border-2;
+  }
+
+  /* Responsive gap */
+  .gap-responsive-2 {
+    @apply gap-1 sm:gap-2 md:gap-3 lg:gap-4;
+  }
+
+  .gap-responsive-4 {
+    @apply gap-2 sm:gap-3 md:gap-4 lg:gap-6;
+  }
+
+  /* Responsive min/max heights */
+  .min-h-responsive {
+    @apply min-h-[calc(100vh-200px)] sm:min-h-[calc(100vh-180px)] lg:min-h-[calc(100vh-160px)];
+  }
+
+  .max-h-responsive {
+    @apply max-h-[70vh] sm:max-h-[75vh] md:max-h-[80vh];
+  }
+
+  /* Responsive font weights */
+  .font-responsive-bold {
+    @apply font-semibold sm:font-bold;
+  }
+
+  /* Responsive line heights */
+  .leading-responsive {
+    @apply leading-tight sm:leading-snug md:leading-normal;
+  }
+
+  /* Responsive letter spacing */
+  .tracking-responsive {
+    @apply tracking-tight sm:tracking-normal;
+  }
+}
+
+/* Custom Animations - Optimized for Mobile */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slide-in-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-down {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Animation Classes */
+.animate-float-responsive {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-slide-in-up-responsive {
+  animation: slide-in-up 0.3s ease-out;
+}
+
+.animate-slide-in-down-responsive {
+  animation: slide-in-down 0.3s ease-out;
+}
+
+.animate-slide-in-left-responsive {
+  animation: slide-in-left 0.3s ease-out;
+}
+
+.animate-slide-in-right-responsive {
+  animation: slide-in-right 0.3s ease-out;
+}
+
+.animate-fade-in-responsive {
+  animation: fade-in 0.3s ease-out;
+}
+
+.animate-scale-in-responsive {
+  animation: scale-in 0.3s ease-out;
+}
+
+/* Media Query Specific Styles */
+@media (max-width: 640px) {
+  .mobile-compact {
+    padding: 0.75rem;
+  }
+  
+  .mobile-full-width {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
+  
+  .mobile-no-padding {
+    padding: 0;
+  }
+  
+  .mobile-text-center {
+    text-align: center;
+  }
+  
+  .mobile-stack {
+    flex-direction: column;
+  }
+  
+  .mobile-hidden {
+    display: none !important;
+  }
+  
+  .mobile-visible {
+    display: block !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .tablet-grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  .tablet-w-1\/2 {
+    width: 50%;
+  }
+  
+  .tablet-flex-row {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 1025px) {
+  .desktop-grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  
+  .desktop-w-1\/3 {
+    width: 33.333%;
+  }
+  
+  .desktop-flex-row {
+    flex-direction: row;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .touch-padding {
+    padding: 12px;
+  }
+  
+  .touch-no-hover:hover {
+    background-color: inherit;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .print-hidden {
+    display: none !important;
+  }
+  
+  .print-visible {
+    display: block !important;
+  }
+  
+  .print-black-white {
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark/Light Mode Transitions */
+@media (prefers-color-scheme: dark) {
+  .dark-transition {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .high-contrast {
+    border-width: 2px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-transparency: reduce) {
+  .reduce-transparency {
+    background: hsl(var(--background)) !important;
+    backdrop-filter: none !important;
+  }
+}
+
+/* Landscape Mode */
+@media (orientation: landscape) and (max-height: 500px) {
+  .landscape-compact {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .landscape-hide {
+    display: none !important;
+  }
+  
+  .landscape-stack-vertical {
+    flex-direction: column;
+  }
+}
+
+/* Portrait Mode */
+@media (orientation: portrait) and (max-width: 768px) {
+  .portrait-full-height {
+    height: 100vh;
+  }
+  
+  .portrait-center {
+    justify-content: center;
+  }
+}
+
+/* Very Large Screens */
+@media (min-width: 1920px) {
+  .xl-text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+  
+  .xl-p-8 {
+    padding: 2rem;
+  }
+  
+  .xl-gap-8 {
+    gap: 2rem;
+  }
+}
+
+/* Performance Optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Loading Optimization */
+.content-visibility-auto {
+  content-visibility: auto;
+}
+
+/* GPU Acceleration */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Fix for iOS Safari 100vh issue */
+@supports (-webkit-touch-callout: none) {
+  .ios-full-height {
+    height: -webkit-fill-available;
+  }
+}
+
+/* Fix for Android Chrome address bar */
+@supports (height: 100dvh) {
+  .dynamic-height {
+    height: 100dvh;
+  }
+}
+
+/* Game-specific responsive utilities */
+.game-mobile-layout {
+  @apply flex flex-col h-screen ios-full-height;
+}
+
+.game-desktop-layout {
+  @apply flex flex-row h-screen;
+}
+
+.board-mobile {
+  @apply w-full max-w-[min(100vw,100vh-250px)] mx-auto;
+}
+
+.board-desktop {
+  @apply w-full max-w-[min(100%,70vh)];
+}
+
+.sidebar-mobile-height {
+  @apply h-auto max-h-[40vh];
+}
+
+.sidebar-desktop-height {
+  @apply h-full;
+}
+
+/* Mobile game controls */
+.mobile-game-controls {
+  @apply fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur-lg border-t border-gray-700 p-4 z-30 pb-safe;
+}
+
+/* Prevent zoom on mobile input */
+@media (max-width: 768px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* Smooth scrolling for game */
+.game-scroll-container {
+  scroll-behavior: smooth;
+}
+
+/* Game board touch optimization */
+.game-board-touch {
+  touch-action: manipulation;
+}
+
+/* Prevent text selection in game */
+.game-no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Game animations with reduced motion support */
+@media (prefers-reduced-motion: no-preference) {
+  .game-animate {
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-animate {
+    animation: none;
+  }
+}
