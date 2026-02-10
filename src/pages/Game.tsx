@@ -187,21 +187,7 @@ const Game: React.FC = () => {
 
         {/* Desktop Sidebar */}
         <div className="hidden lg:flex lg:w-[30%] border-l border-gray-700 bg-gray-800/80 flex-col">
-          <div className="flex-shrink-0 p-4 border-b border-gray-700">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-lg font-bold text-white">Game Controls</h2>
-                <p className="text-sm text-gray-400">#{gameId?.slice(-6) || 'Local'}</p>
-              </div>
-              <button
-                onClick={handleResetSession}
-                className="p-2 rounded-lg hover:bg-gray-700 transition-colors"
-                title="Reset Session"
-              >
-                <RotateCcw className="w-5 h-5 text-blue-400" />
-              </button>
-            </div>
-          </div>
+         
           
           <div className="flex-1 overflow-y-auto">
             <GameSidebar

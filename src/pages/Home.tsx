@@ -45,7 +45,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-background bg-game-pattern overflow-hidden relative">
+    <div className="h-screen w-full flex flex-col bg-background bg-game-pattern overflow-hidden relative">
       {/* Premium background effects */}
       <div className="absolute inset-0 bg-radial-glow pointer-events-none" />
       
@@ -67,8 +67,8 @@ const Home: React.FC = () => {
       
       {/* Floating decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-[10%] text-6xl animate-float opacity-20 hidden md:block">🎲</div>
-        <div className="absolute top-40 right-[15%] text-5xl animate-float-delayed opacity-20 hidden md:block">🐍</div>
+        <div className="absolute top-10 left-[5%] text-4xl sm:text-5xl lg:text-6xl animate-float opacity-10 sm:opacity-20">🎲</div>
+        <div className="absolute top-20 right-[10%] text-3xl animate-float-delayed opacity-20 hidden md:block">🐍</div>
         <div className="absolute bottom-40 left-[15%] text-5xl animate-float opacity-20 hidden md:block">🪜</div>
         <div className="absolute bottom-20 right-[10%] text-6xl animate-float-delayed opacity-20 hidden md:block">🏆</div>
         <Sparkles className="absolute top-1/3 left-[5%] w-8 h-8 text-primary/30 animate-pulse hidden md:block" />
@@ -76,13 +76,15 @@ const Home: React.FC = () => {
         <Target className="absolute bottom-1/3 right-[8%] w-6 h-6 text-neon-emerald/30 animate-pulse hidden md:block" style={{ animationDelay: '1s' }} />
       </div>
 
+      
+
       {/* Main Content */}
-      <main className="relative z-10 flex-1 flex items-center justify-center p-4 lg:p-6">
-        <div className="w-full max-w-6xl mx-auto grid lg:grid-cols-5 gap-4 lg:gap-8">
+      <main className="relative z-10 flex-1 flex justify-center pt-12 lg:pt-16 p-4 lg:p-6">
+        <div className=" max-w-6xl mx-auto grid lg:grid-cols-5 gap-4 lg:gap-8">
           {/* Left Column - Game Setup (60%) */}
-          <div className="lg:col-span-3 flex flex-col items-center lg:items-start">
+          <div className="lg:col-span-3 flex flex-col items-center lg:items-start justify-start">
             {/* Hero Title */}
-            <div className="text-center lg:text-left mb-6 lg:mb-8 w-full">
+            <div className="text-center lg:text-left mb-8 lg:mb-10 w-full">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-4 lg:mb-6">
                 <span className="text-gradient-premium">Snake & Ladder</span>
               </h1>
@@ -94,18 +96,18 @@ const Home: React.FC = () => {
             </div>
 
             {/* Game Setup Card */}
-            <div className="w-full max-w-2xl glass-card-strong p-4 sm:p-5 lg:p-6 rounded-2xl lg:rounded-3xl">
+             <div className="w-full max-w-xl glass-card-strong p-3 sm:p-4 lg:p-5 rounded-xl lg:rounded-2xl">
               {/* Player Count */}
               <div className="mb-4 lg:mb-6">
                 <label className="flex items-center gap-2 text-sm font-semibold text-foreground mb-3">
                   <Users className="w-4 h-4 text-primary" />
                   Number of Players
                 </label>
-                <div className="flex items-center justify-center gap-4 lg:gap-6 glass-card rounded-2xl p-4">
+                  <div className="mx-auto flex items-center justify-center gap-3 lg:gap-4 glass-card rounded-xl p-4 w-[360px]">
                   <button
                     onClick={() => handlePlayerCountChange(-1)}
                     disabled={playerCount <= 2}
-                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl glass-card border border-white/10 text-foreground flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10 hover:border-primary/50 transition-all hover:scale-105 active:scale-95"
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg glass-card border border-white/10 text-foreground flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10 hover:border-primary/50 transition-all hover:scale-105 active:scale-95"
                   >
                     <Minus className="w-5 h-5 sm:w-6 sm:h-6" />
                   </button>
@@ -116,7 +118,7 @@ const Home: React.FC = () => {
                   <button
                     onClick={() => handlePlayerCountChange(1)}
                     disabled={playerCount >= 6}
-                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl glass-card border border-white/10 text-foreground flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10 hover:border-primary/50 transition-all hover:scale-105 active:scale-95"
+                    className="w-9 h-9 sm:w-12 sm:h-10 rounded-lg glass-card border border-white/10 text-foreground flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10 hover:border-primary/50 transition-all hover:scale-105 active:scale-95"
                   >
                     <Plus className="w-5 h-5 sm:w-6 sm:h-6" />
                   </button>
@@ -147,7 +149,7 @@ const Home: React.FC = () => {
                           value={name}
                           onChange={(e) => handleNameChange(index, e.target.value)}
                           placeholder={`Player ${index + 1}`}
-                          className="flex-1 px-3 lg:px-4 py-3 lg:py-3.5 rounded-xl glass-card border border-white/10 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all bg-transparent"
+                          className="flex-1 px-3 py-2 rounded-xl glass-card border border-white/10 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all bg-transparent"
                           maxLength={15}
                         />
                       </div>
@@ -160,7 +162,7 @@ const Home: React.FC = () => {
               <button
                 onClick={handleStartGame}
                 disabled={isLoading || playerNames.some(n => !n.trim())}
-                className="w-full py-3 lg:py-4 rounded-xl bg-gradient-to-r from-primary via-accent to-primary text-primary-foreground font-bold text-lg flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed hover:shadow-neon transition-all hover:scale-[1.02] active:scale-[0.98] group neon-border"
+                className="w-full py-2 lg:py-3 rounded-lg bg-gradient-to-r from-primary via-accent to-primary text-primary-foreground font-bold text-lg flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed hover:shadow-neon transition-all hover:scale-[1.02] active:scale-[0.98] group neon-border"
               >
                 {isLoading ? (
                   <div className="w-6 h-6 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
@@ -191,9 +193,9 @@ const Home: React.FC = () => {
           </div>
 
           {/* Right Column - Leaderboard (40%) */}
-          <div className="lg:col-span-2 flex flex-col mt-6 lg:mt-0">
-            <div className="glass-card-strong p-4 sm:p-5 lg:p-6 rounded-2xl lg:rounded-3xl h-full flex flex-col">
-              <div className="flex items-center gap-3 mb-4 lg:mb-6">
+          <div className="lg:col-span-2 flex flex-col mt-10 lg:mt-24">
+            <div className="glass-card-strong p-3 sm:p-4 rounded-xl lg:rounded-2xl flex flex-col">
+              <div className="flex items-center gap-3 mb-4 mt-20 lg:mb-6">
                 <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center neon-glow-purple">
                   <Trophy className="w-5 h-5 lg:w-6 lg:h-6 text-amber-900" />
                 </div>
@@ -212,7 +214,7 @@ const Home: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 p-3 lg:p-4 text-center">
+      <footer className="relative z-10 p-3 lg:p-2 text-center">
         <p className="text-xs lg:text-sm text-muted-foreground">
           🎮 Made with ❤️ • The Ultimate Snake & Ladder Experience
         </p>
